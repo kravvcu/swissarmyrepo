@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Navigation
+alias ..2='cd ../..'
+alias ..3='cd ../../..'
+alias ..4='cd ../../../..'
+alias ..5='cd ../../../../..'
+
+# clipboard - needs xclip
+alias cb='xclip -selection c'
+
+# copy own public key to clipboard
+alias cppub='cat $HOME/.ssh/devops_keys | cb'
+
+# get own public IP and save it to clipboard
+alias myip='echo "wget http://ipinfo.io/ip -qO -" | cb'
+
+# ansible encrypt/decrypt
+alias ae='ansible-vault encrypt'
+alias ad='ansible-vault decrypt'
+alias av='ansible-vault'
+
+# docker login to container
+function dolog() {
+
+ if [ $# -ne 1 ]; then
+   echo 'Illegal number of arguments'
+   return 1
+ fi
+
+ docker ps --format "{{.Names}}" | egrep "^$1$" > /dev/null
+ if [ $? -ne 0 ]; then
+   echo "Container '$1' does not exist"
+   return 1
+ fi
+
+ docker exec -it "$1" bash
+
+}
+
+# backs up file or directory to a default $HOME/.backups location or a specified one
+function backup() {
+  if [ $# -eq 0 ] || [ $# -gt 2 ]; then
+    echo "Usage: backup <path> [backup_target_directory]"
+    return 1
+  fi
+
+  TO_BACKUP=$1
+  PARENT_DIR=$(cd `dirname ${TO_BACKUP}`; pwd)
+  FILE_NAME=$(basename "${TO_BACKUP}")
+  TO_BACKUP="${PARENT_DIR}/${FILE_NAME}"
+
+  TARGET_NAME=$(echo "${FILE_NAME#.}") # remove leading dot for hidden files
+
+  TARGET_DIR="$HOME/.backups"
+  if [ $# -eq 2 ]; then
+    TARGET_DIR="$2"
+  fi
+
+  mkdir -p ${TARGET_DIR} || return 1
+
+  mkdir -p ${TARGET_DIR}/${TARGET_NAME}
+
+  timestamp_date=$(date +%Y-%m-%d-%H-%M-%S)
+
+  rsync -r "${TO_BACKUP}" "${TARGET_DIR}/${TARGET_NAME}/${timestamp_date}"
+  echo "src ${timestamp_date}: ${TO_BACKUP}" >> "${TARGET_DIR}/${TARGET_NAME}/backup_log"
+}
