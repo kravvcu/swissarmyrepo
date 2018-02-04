@@ -20,6 +20,13 @@ alias ae='ansible-vault encrypt'
 alias ad='ansible-vault decrypt'
 alias av='ansible-vault'
 
+# Google cloud
+
+alias gce='gcloud compute'
+alias gcels='gcloud compute instances list'
+
+alias gke='gcloud containers'
+
 # docker login to container
 function dolog() {
 
