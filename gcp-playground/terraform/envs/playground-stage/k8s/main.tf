@@ -1,5 +1,6 @@
 resource "google_compute_instance" "test" {
   name = "test"
+  zone = "europe-west2-a"
   boot_disk {
     initialize_params {
       size  = "100"
@@ -9,7 +10,7 @@ resource "google_compute_instance" "test" {
   }
   machine_type = "n1-standard-1"
   network_interface {
-    network = "default"
+    network = "${data.terraform_remote_state.network.network_name}"
 
     access_config {
 

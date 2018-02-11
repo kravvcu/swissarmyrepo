@@ -7,6 +7,6 @@ provider "google" {
 terraform {
   backend "gcs" {
     bucket = "i-wonder-whether-buckets-can-have-longer-names"
-    prefix = "gcp-playground"
+    path   = "gcp-playground/stage/networks.tfstate"
   }
 }
