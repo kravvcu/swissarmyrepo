@@ -27,6 +27,9 @@ alias gcels='gcloud compute instances list'
 
 alias gke='gcloud containers'
 
+# git
+alias giff='git diff'
+
 # docker login to container
 function dolog() {
 
