@@ -55,3 +55,9 @@ grep -q GOOGLE_APPLICATION_CREDENTIALS $HOME/.bashrc || \
   echo "export GOOGLE_APPLICATION_CREDENTIALS=${GCLOUD_CREDS_PATH}" >> $HOME/.bashrc && \
   source $HOME/.bashrc
 ```
+
+```zsh
+grep -q GOOGLE_APPLICATION_CRDENTIALS $HOME/.zshrc || \
+  echo "export GOOGLE_APPLICATION_CREDENTIALS=${GCLOUD_CREDS_PATH}" >> $HOME/.zshrc && \
+  source $HOME/.zshrc
+```
