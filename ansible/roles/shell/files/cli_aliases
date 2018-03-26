@@ -9,7 +9,7 @@ alias ..5='cd ../../../../..'
 # clipboard - needs xclip
 alias cb='xclip -selection c'
 
-# copy own public key to clipboard
+# copy teams public key to clipboard
 alias cppub='cat $HOME/.ssh/devops_keys | cb'
 
 # get own public IP and save it to clipboard
@@ -21,14 +21,38 @@ alias ad='ansible-vault decrypt'
 alias av='ansible-vault'
 
 # Google cloud
-
 alias gce='gcloud compute'
 alias gcels='gcloud compute instances list'
 
-alias gke='gcloud containers'
+alias gke='gcloud container'
+
+alias gs='gsutil'
 
 # git
 alias giff='git diff'
+
+# k8s
+alias kg='kubectl get'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get svc'
+alias kgc='kubectl get configmaps'
+alias kgi='kubectl get ing'
+alias kgno='kubectl get nodes'
+alias kgna='kubectl get namespaces'
+alias kgd='kubectl get deploy'
+
+alias kd='kubectl describe'
+alias kdp='kubectl describe pods'
+alias kdd='kubectl describe deploy'
+
+# terraform
+alias tp='terraform plan'
+alias ta='terraform apply'
+alias ti='terraform init'
+
+# misc
+alias cdiff='colordiff -bBru'
+
 
 # docker login to container
 function dolog() {
@@ -75,4 +99,90 @@ function backup() {
 
   rsync -r "${TO_BACKUP}" "${TARGET_DIR}/${TARGET_NAME}/${timestamp_date}"
   echo "src ${timestamp_date}: ${TO_BACKUP}" >> "${TARGET_DIR}/${TARGET_NAME}/backup_log"
+}
+
+# parse epoch timestamp into a date
+function tparse()
+{
+  for num in "$@"
+  do
+     if [ "$num" -eq "$num" ] 2>/dev/null; then
+       d=$(date -d @$num)
+       echo "$num : $d"
+     else
+       echo "$num : Nan"
+     fi
+  done
+}
+
+function kexec()
+{
+  if [ $# -lt 2 ]; then
+    echo "Illegal number of arguments. Usage: kexec <pod_name_substr> <container_substr> [other 'kubectl' optional params]"
+    return 1
+  fi
+
+  pod_name_substr=$1
+  container_substr=$2
+
+  pods=$(kubectl "${@:3}" get pods | grep $pod_name_substr | awk '{print $1}')
+
+  if [ `echo "$pods" | wc -l` -ne 1 ]; then
+    echo "Multiple pods match '$pod_name_substr':"
+    echo "$pods"
+    return 1
+  fi
+
+  containers=$(kubectl "${@:3}" get pods $pods -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n' | grep $container_substr)
+
+  if [ `echo "$containers" | wc -l` -ne 1 ]; then
+    echo "Multiple containers match '$container_substr':"
+    echo "$containers"
+    return 1
+  fi
+  kubectl "${@:3}" exec -it $pods -c $containers -- bash
+}
+
+# TODO: unfinished
+# TODO: get logs of a specific container from a specific pod, optionally providing parameters such as namespace
+function klogs()
+{
+  pod_name_substr=$1
+  container_substr=$2
+
+  pods=$(kubectl "${@:2}" get pods | grep $pod_name_substr | awk '{print $1}')
+  if [ `echo "$pods" | wc -l` -ne 1 ]; then
+    echo "Multiple pods match '$pod_name_substr':"
+    echo "$pods"
+    return 1
+  fi
+
+  containers=$(kubectl "${@:3}" get pods -o jsonpath={.items[*].spec.containers[*].name} | grep $container_substr)
+  echo $containers
+
+#  if [ `echo "$containers" | wc -l` -ne 1 ]; then
+#    echo "Multiple containers match '$container_substr':"
+#    echo "$containers"
+#    return 1
+#  fi
+
+  #kubectl "${@:2}" logs -f $pods $container_substr
+}
+
+# copy to clipboard the apt command to install, the specified in the first argument, utility
+function install() {
+
+  package=$1
+
+  case $package in
+    netstat)
+        echo "apt install net-tools" | cb
+        ;;
+    ip)
+        echo "apt install iproute2" | cb
+        ;;
+    *)
+        echo "Utility '$package' not covered as a case"
+        ;;
+  esac
 }
