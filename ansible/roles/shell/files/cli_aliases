@@ -49,6 +49,7 @@ alias kdd='kubectl describe deploy'
 alias tp='terraform plan'
 alias ta='terraform apply'
 alias ti='terraform init'
+alias td='terraform destroy'
 
 # misc
 alias cdiff='colordiff -bBru'
