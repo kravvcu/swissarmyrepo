@@ -172,8 +172,9 @@ function klogs()
 }
 
 # copy to clipboard the apt command to install, the specified in the first argument, utility
+# TODO: check if xclip is installed
 function install() {
-
+  
   package=$1
 
   case $package in
@@ -186,6 +187,8 @@ function install() {
     dig)
         echo "apt install dnsutils" | cb
         ;;
+    ping)
+        echo "apt install iputils-ping" | cb
     *)
         echo "Utility '$package' not covered as a case"
         ;;
