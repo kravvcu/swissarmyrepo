@@ -179,16 +179,20 @@ function install() {
 
   case $package in
     netstat)
-        echo "apt install net-tools" | cb
+        echo "apt-get install net-tools" | cb
         ;;
     ip)
-        echo "apt install iproute2" | cb
+        echo "apt-get install iproute2" | cb
         ;;
     dig)
-        echo "apt install dnsutils" | cb
+        echo "apt-get install dnsutils" | cb
         ;;
     ping)
-        echo "apt install iputils-ping" | cb
+        echo "apt-get install iputils-ping" | cb
+        ;;
+    curl)
+        echo "apt-get install curl" | cb
+        ;;
     *)
         echo "Utility '$package' not covered as a case"
         ;;
