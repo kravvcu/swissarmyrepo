@@ -183,6 +183,9 @@ function install() {
     ip)
         echo "apt install iproute2" | cb
         ;;
+    dig)
+        echo "apt install dnsutils" | cb
+        ;;
     *)
         echo "Utility '$package' not covered as a case"
         ;;
