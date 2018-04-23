@@ -187,6 +187,9 @@ function install() {
     dig)
         echo "apt-get install dnsutils" | cb
         ;;
+    host)
+        echo "apt-get install dnsutils" | cb
+        ;;
     ping)
         echo "apt-get install iputils-ping" | cb
         ;;
