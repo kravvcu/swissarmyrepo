@@ -117,6 +117,8 @@ function tparse()
   done
 }
 
+# TODO: other shells than bash
+# TODO: exact match for pods / containers
 function kexec()
 {
   if [ $# -lt 2 ]; then
@@ -200,4 +202,31 @@ function install() {
         echo "Utility '$package' not covered as a case"
         ;;
   esac
+}
+
+# sets up a desktop notification for the specified time
+function remind() {
+  command -v notify-send > /dev/null || {
+    echo "'notify-send' command is not available"
+    exit 1
+  }
+
+  command -v notify-send > /dev/null || {
+    echo "'at' command is not available"
+    exit 1
+  }
+
+  if [ $# -ne 2 ]; then
+    echo 'usage: remind "<when>" "<what>"'
+    echo "<when>: as handled by 'at' utility. See: man at"
+    echo "<what>: notification text"
+    echo "note: both <when> and <what> need to be enclosed in quotes"
+    echo "example: remind \"10AM\" \"english lesson\""
+    exit 2
+  fi
+
+  when=$1
+  what=$2
+
+  echo "notify-send '${what}'" | at "${when}"
 }
