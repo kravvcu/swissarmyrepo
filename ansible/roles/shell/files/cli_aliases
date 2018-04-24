@@ -208,12 +208,12 @@ function install() {
 function remind() {
   command -v notify-send > /dev/null || {
     echo "'notify-send' command is not available"
-    exit 1
+    return 1
   }
 
   command -v notify-send > /dev/null || {
     echo "'at' command is not available"
-    exit 1
+    return 1
   }
 
   if [ $# -ne 2 ]; then
@@ -222,7 +222,7 @@ function remind() {
     echo "<what>: notification text"
     echo "note: both <when> and <what> need to be enclosed in quotes"
     echo "example: remind \"10AM\" \"english lesson\""
-    exit 2
+    return 2
   fi
 
   when=$1
