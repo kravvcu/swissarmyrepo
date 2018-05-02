@@ -12,7 +12,7 @@ alias cb='xclip -selection c'
 # copy own public key to clipboard
 alias cppub='cat $HOME/.ssh/id_rsa.pub | cb'
 
-# get own public IP and save it to clipboard
+# copy to clipboard the command to retrieve the public IP the machine is seen as 
 alias myip='echo "wget http://ipinfo.io/ip -qO -" | cb'
 
 # ansible encrypt/decrypt
