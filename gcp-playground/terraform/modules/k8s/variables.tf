@@ -8,4 +8,4 @@ variable "master_boot_disk_image" { default = "ubuntu-os-cloud/ubuntu-1604-lts" 
 
 variable "master_machine_type" { default = "n1-standard-1" }
 
-variable "network" { default = "default"  }
+variable "subnetwork" { default = "default"  }

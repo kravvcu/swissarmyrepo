@@ -11,7 +11,7 @@ resource "google_compute_instance" "k8s_master" {
   }
   machine_type = "${var.master_machine_type}"
   network_interface {
-    network = "${var.network}"
+    subnetwork = "${var.subnetwork}"
 
     access_config {}
   }
