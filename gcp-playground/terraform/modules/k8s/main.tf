@@ -17,6 +17,8 @@ resource "google_compute_instance" "k8s-master" {
       nat_ip = "${var.master_public_address}"
     }
   }
+
+  tags = [ "group-k8s-master" ]
 }
 
 resource "google_compute_instance" "k8s-slave" {
@@ -38,4 +40,5 @@ resource "google_compute_instance" "k8s-slave" {
   }
 
   count = "${var.no_k8s_slaves}"
+  tags = [ "group-k8s-slave" ]
 }
