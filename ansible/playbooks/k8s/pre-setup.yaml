@@ -1,0 +1,44 @@
+---
+
+- hosts: k8s-master:k8s-slave
+  become: true
+  become_user: 'root'
+  gather_facts: true
+  tasks:
+    - name: 'Gather product uuids'
+      command: 'cat /sys/class/dmi/id/product_uuid'
+      register: 'product_uuid'
+
+    - name: 'Verify all nodes have unique MAC addresses and product uuids'
+      delegate_to: 'localhost'
+      become: false
+      run_once: true
+      block:
+      - name: 'Initialize MAC address table fact'
+        set_fact:
+          mac_addresses: []
+
+      - name: 'Initialize product uuid table fact'
+        set_fact:
+          product_uuids: []
+
+      - name: 'Populate MAC address table with host MAC addresses'
+        set_fact:
+          mac_addresses: "{{ mac_addresses }} + [ '{{ hostvars[item].ansible_default_ipv4.macaddress }}' ]"
+        with_inventory_hostnames: k8s-master:k8s-slave
+
+      - name: 'Populate product uuid table with product uuids'
+        set_fact:
+          product_uuids: "{{ product_uuids }} + [ '{{ hostvars[item].product_uuid.stdout }}' ]"
+        with_inventory_hostnames: k8s-master:k8s-slave
+
+      - assert:
+          msg: 'Inventory hosts MAC addresses are not unique!'
+          that: >
+            mac_addresses | count == mac_addresses | unique | count
+
+      - assert:
+          msg: 'Inventory hosts product uuids are not unique!'
+          that: >
+            product_uuids | count == product_uuids | unique | count
+

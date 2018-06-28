@@ -1,0 +1,4 @@
+---
+
+- import_playbook: playbooks/k8s/pre-setup.yaml
+
