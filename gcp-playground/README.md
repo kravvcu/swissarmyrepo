@@ -54,12 +54,22 @@ gcloud services enable compute.googleapis.com
 grep -q GOOGLE_APPLICATION_CREDENTIALS $HOME/.bashrc || \
   echo "export GOOGLE_APPLICATION_CREDENTIALS=${GCLOUD_CREDS_PATH}" >> $HOME/.bashrc && \
   source $HOME/.bashrc
+
+# for ansible dynamic inventory
+grep -q GCE_EMAIL $HOME/.bashrc || echo "export GCE_EMAIL=terraformo@${GCLOUD_PROJECT_NAME}.iam.gserviceaccount.com" >> $HOME/.bashrc
+grep -q GCE_PROJECT $HOME/.bashrc || echo "export GCE_PROJECT=${GCLOUD_PROJECT_NAME}" >> $HOME/.bashrc
+grep -q GCE_CREDENTIALS_FILE_PATH $HOME/.bashrc || echo "export GCE_CREDENTIALS_FILE_PATH=${GCLOUD_CREDS_PATH}" >> $HOME/.bashrc
 ```
 
 ```zsh
 grep -q GOOGLE_APPLICATION_CRDENTIALS $HOME/.zshrc || \
   echo "export GOOGLE_APPLICATION_CREDENTIALS=${GCLOUD_CREDS_PATH}" >> $HOME/.zshrc && \
   source $HOME/.zshrc
+
+# for ansible dynamic inventory
+grep -q GCE_EMAIL $HOME/.zshrc || echo "export GCE_EMAIL=terraformo@${GCLOUD_PROJECT_NAME}.iam.gserviceaccount.com" >> $HOME/.zshrc
+grep -q GCE_PROJECT $HOME/.zshrc || echo "export GCE_PROJECT=${GCLOUD_PROJECT_NAME}" >> $HOME/.zshrc
+grep -q GCE_CREDENTIALS_FILE_PATH $HOME/.zshrc || echo "export GCE_CREDENTIALS_FILE_PATH=${GCLOUD_CREDS_PATH}" >> $HOME/.zshrc
 ```
 
 ### Terrorform GCP
