@@ -61,3 +61,12 @@ grep -q GOOGLE_APPLICATION_CRDENTIALS $HOME/.zshrc || \
   echo "export GOOGLE_APPLICATION_CREDENTIALS=${GCLOUD_CREDS_PATH}" >> $HOME/.zshrc && \
   source $HOME/.zshrc
 ```
+
+### Terrorform GCP
+
+Running terraform in the following sequence SHOULD set up a working environment:
+
+* network
+* addresses
+* firewall
+* k8s
