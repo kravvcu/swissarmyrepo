@@ -1,0 +1,31 @@
+#!/bin/bash
+
+function kb {
+  if [ $# -gt 1 ]; then
+    echo "Usage: kb [subject]"
+    return 1
+  fi
+
+  subject=''
+  if [ $# -eq 1 ]; then
+    subject="$1"
+  fi
+
+  case $subject in
+    docker)
+      _docker
+      ;;
+    "")
+      _docker
+      ;;
+    *)
+      echo "$subject subject not found."
+      ;;
+  esac 
+  
+}
+
+_docker() {
+  echo "[docker] List registry repositories: /v2/_catalog"
+  echo "[docker] List repository tags: /v2/<repo>/tags/list"
+}
