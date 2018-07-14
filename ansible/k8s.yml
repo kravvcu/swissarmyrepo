@@ -1,4 +1,5 @@
 ---
 
-- import_playbook: playbooks/k8s/pre-setup.yaml
+- import_playbook: playbooks/k8s/pre-port-check.yaml
+#- import_playbook: playbooks/k8s/pre-setup.yaml
 

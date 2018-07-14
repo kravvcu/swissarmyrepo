@@ -1,0 +1,34 @@
+---
+
+- hosts: k8s-master
+  become: true
+  become_user: root
+  tasks:
+    - name: 'Check whether kubeadm is installed'
+      command: 'dpkg -l kubeadm'
+      changed_when: false
+      failed_when: false
+      register: kubeadm_installed
+
+    - name: 'Check whether all kubemaster ports are free to use'
+      when: kubeadm_installed.rc == 1
+      block:
+      - name: 'Install nc'
+        package:
+          name: 'netcat-openbsd'
+          state: 'present'
+
+      - name: 'Check whether all ports are free to use'
+        command: 'nc -z localhost {{ item }}'
+        with_items: '{{ k8s_master_ports }}'
+        register: k8s_master_checked_ports
+        changed_when: false
+        failed_when: false
+
+      - name: 'Notify when ports are taken'
+        debug:
+          msg: "Ports: {{ k8s_master_checked_ports.results | json_query(\"[*].[?failed=='true'].item\") | join(',') }} are not free"
+        delegate_to: localhost
+        when: k8s_master_checked_ports.results | json_query("[*].[?failed=='true'].item") | count != 0
+
+      - debug: var=k8s_master_checked_ports

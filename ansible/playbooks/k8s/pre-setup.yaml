@@ -7,6 +7,7 @@
   tasks:
     - name: 'Gather product uuids'
       command: 'cat /sys/class/dmi/id/product_uuid'
+      changed_when: false
       register: 'product_uuid'
 
     - name: 'Verify all nodes have unique MAC addresses and product uuids'
