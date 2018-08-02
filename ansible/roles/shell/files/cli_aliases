@@ -211,7 +211,7 @@ function remind() {
     return 1
   }
 
-  command -v notify-send > /dev/null || {
+  command -v at > /dev/null || {
     echo "'at' command is not available"
     return 1
   }
