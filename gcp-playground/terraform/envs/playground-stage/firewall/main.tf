@@ -18,3 +18,21 @@ resource "google_compute_firewall" "permit-ssh-icmp-self" {
 
   source_ranges = [ "${chomp(data.http.own-ip.body)}/32" ]
 }
+
+resource "google_compute_firewall" "permit-subnetwork-traffic" {
+  name = "${var.environment-prefix}-permit-subnetwork-traffic"
+  network = "${data.terraform_remote_state.network.network_name}"
+  source_ranges = [ "${data.terraform_remote_state.network.subnetwork_ipv4_cidr}" ]
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+  }
+
+  allow {
+    protocol = "udp"
+  }
+}
