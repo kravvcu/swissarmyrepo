@@ -2,8 +2,8 @@ data "http" "own-ip" {
   url = "https://ipinfo.io/ip"
 }
 
-resource "google_compute_firewall" "permit-ssh-icmp-self" {
-  name = "${var.environment-prefix}-permit-ssh-icmp-self"
+resource "google_compute_firewall" "permit-all-self" {
+  name = "${var.environment-prefix}-permit-all-self"
 
   network = "${data.terraform_remote_state.network.network_name}"
 
@@ -13,7 +13,10 @@ resource "google_compute_firewall" "permit-ssh-icmp-self" {
 
   allow {
     protocol = "tcp"
-    ports = [ "22" ]
+  }
+
+  allow {
+    protocol = "udp"
   }
 
   source_ranges = [ "${chomp(data.http.own-ip.body)}/32" ]
