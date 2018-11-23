@@ -1,5 +1,5 @@
 resource "google_compute_instance" "k8s-master" {
-  name = "${var.master_name}"
+  name = "${var.master_name_prefix}-${count.index}"
   zone = "${var.zone}"
 
   boot_disk {
@@ -13,11 +13,10 @@ resource "google_compute_instance" "k8s-master" {
   network_interface {
     subnetwork = "${var.subnetwork}"
 
-    access_config {
-      nat_ip = "${var.master_public_address}"
-    }
+    access_config {}
   }
-
+  count = "${var.no_k8s_masters}"
+  can_ip_forward = true
   tags = [ "group-k8s-master" ]
 }
 
@@ -39,6 +38,7 @@ resource "google_compute_instance" "k8s-slave" {
     access_config {}
   }
 
+  can_ip_forward = true
   count = "${var.no_k8s_slaves}"
   tags = [ "group-k8s-slave" ]
 }
