@@ -39,3 +39,13 @@ resource "google_compute_firewall" "permit-subnetwork-traffic" {
     protocol = "udp"
   }
 }
+
+resource "google_compute_firewall" "kubernetes-the-hard-way" {
+  name = "kubernetes-the-hard-way-allow-health-check"
+  network = "${data.terraform_remote_state.network.network_name}"
+  source_ranges = [ "35.191.0.0/16", "130.211.0.0/22", "209.85.204.0/22", "209.85.204.0/22" ]
+
+  allow {
+    protocol = "tcp"
+  }
+}
