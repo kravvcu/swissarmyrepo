@@ -1,0 +1,15 @@
+set expandtab
+set smarttab
+set shiftwidth=4
+set tabstop=4
+
+set nobackup
+set nowb
+set noswapfile
+
+syntax enable
+set lazyredraw
+set ignorecase
+set smartcase
+
+set ruler
