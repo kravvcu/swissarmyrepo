@@ -99,7 +99,7 @@ function backup() {
 
   timestamp_date=$(date +%Y-%m-%d-%H-%M-%S)
 
-  rsync -r "${TO_BACKUP}" "${TARGET_DIR}/${TARGET_NAME}/${timestamp_date}"
+  rsync -aP "${TO_BACKUP}" "${TARGET_DIR}/${TARGET_NAME}/${timestamp_date}"
   echo "src ${timestamp_date}: ${TO_BACKUP}" >> "${TARGET_DIR}/${TARGET_NAME}/backup_log"
 }
 
