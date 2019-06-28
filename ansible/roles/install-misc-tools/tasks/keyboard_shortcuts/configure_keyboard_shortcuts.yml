@@ -1,0 +1,16 @@
+---
+
+- include: configure_keyboard_shortcut.yml
+  loop: '{{ keyboard_shortcuts | dict2items }}'
+
+# there does not seem to be an easy way in ansible to make a
+# list of quoted strings (without the unicode prefix)
+- name: create custom shortcuts list in gvariant format
+  set_fact:
+    custom_shortcuts: "['{{ \"', '\".join(keyboard_shortcuts.keys()) }}']"
+
+- name: add all shortcuts to the list of keybindings
+  dconf:
+    key: '/org/cinnamon/desktop/keybindings/custom-list'
+    value: "{{ custom_shortcuts }}"
+    state: 'present'

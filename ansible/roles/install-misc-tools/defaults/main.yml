@@ -1,0 +1,15 @@
+---
+
+keyboard_shortcuts:
+  custom0:
+    name: 'chrome'
+    command: 'google-chrome-stable'
+    binding: "['<Alt>r']"
+  custom1:
+    name: 'firefox'
+    command: '/usr/bin/firefox'
+    binding: "['<Alt>g']"
+  custom2:
+    name: 'nemo'
+    command: '/usr/bin/nemo'
+    binding: "['<Alt>e']"

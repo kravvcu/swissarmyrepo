@@ -1,6 +1,13 @@
 ---
 
-- include_tasks: install_tilda.yml
-- include_tasks: install_synapse.yml
-- include_tasks: install_shutter.yml
+- include: install_tilda.yml
+  tags: tilda
 
+- include: install_synapse.yml
+  tags: synapse
+
+- include: install_shutter.yml
+  tags: shutter
+
+- include: keyboard_shortcuts/configure_keyboard_shortcuts.yml
+  tags: shortcuts
