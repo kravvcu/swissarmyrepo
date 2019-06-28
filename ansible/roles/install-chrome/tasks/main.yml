@@ -1,0 +1,23 @@
+---
+
+- name: check if already installed
+  command: 'dpkg -l google-chrome-stable'
+  changed_when: false
+  failed_when: false
+  register: dpkg_chrome
+  check_mode: no
+
+- name: download and install if not installed
+  when: dpkg_chrome.rc != 0
+  block:
+
+   - name: download google-chrome
+     get_url:
+       url: '{{ google_chrome_link }}'
+       dest: '/tmp/{{ google_chrome_file }}'
+
+   - name: install google-chrome
+     apt:
+       deb: '/tmp/{{ google_chrome_file }}'
+       state: 'present'
+     become: true

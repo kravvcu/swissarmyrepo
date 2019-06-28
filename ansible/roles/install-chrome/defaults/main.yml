@@ -1,0 +1,4 @@
+---
+
+google_chrome_file: 'google-chrome-stable_current_amd64.deb'
+google_chrome_link: 'https://dl.google.com/linux/direct/{{ google_chrome_file }}'
