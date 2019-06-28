@@ -1,5 +1,6 @@
 ---
 
-- include_tasks: install_shutter.yml
 - include_tasks: install_tilda.yml
+- include_tasks: install_synapse.yml
+- include_tasks: install_shutter.yml
 

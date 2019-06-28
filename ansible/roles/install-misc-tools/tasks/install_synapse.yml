@@ -1,0 +1,19 @@
+---
+
+- name: install synapse
+  apt:
+    name: 'synapse'
+    state: 'present'
+  become: true
+
+# configure synapse
+- name: create synapse config dir for current user
+  file:
+    path: '{{ ansible_env.HOME }}/.config/synapse'
+    state: 'directory'
+    mode: '0700'
+
+- name: copy config file for synapse
+  copy:
+    src: 'synapse_config.json'
+    dest: '{{ ansible_env.HOME }}/.config/synapse/config.json'
