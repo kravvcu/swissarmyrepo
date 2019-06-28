@@ -1,0 +1,19 @@
+---
+
+- name: install tilda
+  apt:
+    name: 'tilda'
+    state: 'present'
+  become: 'true'
+
+# configure tilda
+- name: create tilda config dir
+  file:
+    path: '{{ ansible_env.HOME }}/.config/tilda'
+    state: 'directory'
+    mode: '0700'
+
+- name: configure tilda for current user
+  copy:
+    src: 'tilda_config_0'
+    dest: '{{ ansible_env.HOME }}/.config/tilda/config_0'

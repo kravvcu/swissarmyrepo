@@ -1,0 +1,15 @@
+---
+
+- name: add apt repository
+  apt_repository:
+    repo: 'ppa:linuxuprising/shutter'
+    codename: 'bionic' # TODO: do not hardcode
+    state: 'present'
+    update_cache: 'yes'
+  become: 'yes'
+
+- name: install shutter
+  apt:
+    name: 'shutter'
+    state: 'present'
+  become: 'yes'
