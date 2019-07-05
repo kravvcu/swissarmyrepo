@@ -1,0 +1,33 @@
+---
+
+- name: set version of kubectl
+  when: kubectl_version is not defined
+  block:
+    - name: get latest version of kubectl
+      uri:
+        url: 'https://storage.googleapis.com/kubernetes-release/release/stable.txt'
+        return_content: true
+      register: kubectl_version_latest
+
+    - set_fact:
+        kubectl_version: '{{ kubectl_version_latest.content | trim }}'
+
+- name: create directory for kubectl binaries in opt
+  file:
+    path: '/opt/kubectl'
+    state: 'directory'
+  become: true
+
+- name: download kubectl binary
+  get_url:
+    url: 'https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl'
+    dest: '/opt/kubectl/kubectl-{{ kubectl_version }}'
+    mode: '+x'
+  become: true
+
+- name: link kubectl to newly installed version
+  file:
+    path: '/usr/local/bin/kubectl'
+    src: '/opt/kubectl/kubectl-{{ kubectl_version }}'
+    state: 'link'
+  become: true

@@ -19,3 +19,6 @@
 
 - include: keyboard_shortcuts/configure_keyboard_shortcuts.yml
   tags: shortcuts
+
+- include: install_kubectl.yml
+  tags: kubectl

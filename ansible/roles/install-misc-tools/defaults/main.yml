@@ -13,3 +13,5 @@ keyboard_shortcuts:
     name: 'nemo'
     command: '/usr/bin/nemo'
     binding: "['<Alt>e']"
+
+kubectl_version: 'v1.15.0'
