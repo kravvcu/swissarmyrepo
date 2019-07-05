@@ -1,5 +1,0 @@
----
-
-docker_distro:
-  Linux Mint:
-    tessa: 'bionic'
