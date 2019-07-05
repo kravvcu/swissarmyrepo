@@ -1,0 +1,51 @@
+---
+
+- name: install dependencies
+  apt:
+    name: '{{ item }}'
+    state: 'present'
+  loop:
+    - 'apt-transport-https'
+    - 'ca-certificates'
+    - 'curl'
+    - 'gnupg-agent'
+    - 'software-properties-common'
+  become: true
+
+- name: add Docker repo key
+  apt_key:
+    url: 'https://download.docker.com/linux/ubuntu/gpg'
+    state: 'present'
+  become: true
+
+- name: add Docker repo
+  apt_repository:
+    repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ docker_distro[ansible_distribution][ansible_distribution_release] }} stable'
+    state: 'present'
+    update_cache: true
+  become: true
+
+- name: install docker
+  apt:
+    name: '{{ item }}'
+    state: 'present'
+  loop:
+    - 'docker-ce'
+    - 'docker-ce-cli'
+    - 'containerd.io'
+  become: true
+
+- name: enable and start docker daemon
+  systemd:
+    name: 'docker'
+    state: 'started'
+    enabled: true
+  become: true
+
+- name: add current user to docker group
+  user:
+    name: '{{ ansible_env.USER }}'
+    append: true
+    groups: 'docker'
+  become: true
+
