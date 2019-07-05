@@ -1,0 +1,27 @@
+---
+
+- name: create directory for helm binaries in opt
+  file:
+    path: '/opt/helm'
+    state: 'directory'
+  become: true
+
+
+- name: download helm and unarchive
+  unarchive:
+    src: 'https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz'
+    dest: '/opt/helm/'
+    remote_src: true
+    extra_opts:
+      - '--strip-components=1'
+      - '--transform=s/helm/helm-{{ helm_version }}/'
+      - 'linux-amd64/helm'
+    creates: '/opt/helm/helm-{{ helm_version }}'
+  become: true
+
+- name: link helm to newly installed version
+  file:
+    path: '/usr/local/bin/helm'
+    src: '/opt/helm/helm-{{ helm_version }}'
+    state: 'link'
+  become: true

@@ -27,6 +27,7 @@
   tags:
     - kubectl
     - minikube
+    - helm
 
 - include: install_virtualbox.yml
   tags:
@@ -37,3 +38,8 @@
   tags:
     - minikube
     - minikube-only
+
+- include: install_helm.yml
+  tags:
+    - helm
+    - helm-only
