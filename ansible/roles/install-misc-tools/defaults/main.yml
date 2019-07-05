@@ -15,3 +15,4 @@ keyboard_shortcuts:
     binding: "['<Alt>e']"
 
 kubectl_version: 'v1.15.0'
+terraform_version: '0.12.3'

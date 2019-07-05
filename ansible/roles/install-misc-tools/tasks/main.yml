@@ -22,3 +22,6 @@
 
 - include: install_kubectl.yml
   tags: kubectl
+
+- include: install_terraform.yml
+  tags: terraform

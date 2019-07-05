@@ -1,0 +1,36 @@
+---
+
+- name: create directory for terraform binaries in opt
+  file:
+    path: '/opt/terraform'
+    state: 'directory'
+  become: true
+
+- name: check if not already downloaded
+  stat:
+    path: '/opt/terraform/terraform-{{ terraform_version }}'
+  register: terraform_binary
+
+- name: download terraform and unarchive
+  when: not terraform_binary.stat.exists
+  block:
+    - name: download and unarchive terraform
+      unarchive:
+        src: 'https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip'
+        dest: '/opt/terraform/'
+        remote_src: true
+        mode: '+x'
+      become: true
+
+    - name: move terraform binary to target location
+      shell: 'mv /opt/terraform/terraform /opt/terraform/terraform-{{ terraform_version }}'
+      args:
+        creates: '/opt/terraform/terraform-{{ terraform_version }}'
+      become: true
+
+- name: link terraform to newly installed version
+  file:
+    path: '/usr/local/bin/terraform'
+    src: '/opt/terraform/terraform-{{ terraform_version }}'
+    state: 'link'
+  become: true
