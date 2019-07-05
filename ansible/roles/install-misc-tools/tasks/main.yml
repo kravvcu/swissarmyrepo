@@ -20,15 +20,20 @@
 - include: keyboard_shortcuts/configure_keyboard_shortcuts.yml
   tags: shortcuts
 
+- include: install_terraform.yml
+  tags: terraform
+
 - include: install_kubectl.yml
   tags:
     - kubectl
     - minikube
 
-- include: install_terraform.yml
-  tags: terraform
-
 - include: install_virtualbox.yml
   tags:
     - virtualbox
     - minikube
+
+- include: install_minikube.yml
+  tags:
+    - minikube
+    - minikube-only

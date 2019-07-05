@@ -1,0 +1,21 @@
+---
+
+- name: create directory for minikube binaries in opt
+  file:
+    path: '/opt/minikube'
+    state: 'directory'
+  become: true
+
+- name: download minikube binary
+  get_url:
+    url: "https://storage.googleapis.com/minikube/releases/{{ minikube_version | default('latest') }}/minikube-linux-amd64"
+    dest: '/opt/minikube/minikube-{{ minikube_version }}'
+    mode: '+x'
+  become: true
+
+- name: link minikube to newly installed version
+  file:
+    path: '/usr/local/bin/minikube'
+    src: '/opt/minikube/minikube-{{ minikube_version }}'
+    state: 'link'
+  become: true
