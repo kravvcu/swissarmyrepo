@@ -21,7 +21,14 @@
   tags: shortcuts
 
 - include: install_kubectl.yml
-  tags: kubectl
+  tags:
+    - kubectl
+    - minikube
 
 - include: install_terraform.yml
   tags: terraform
+
+- include: install_virtualbox.yml
+  tags:
+    - virtualbox
+    - minikube

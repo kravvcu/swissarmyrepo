@@ -1,0 +1,30 @@
+---
+
+- name: check whether virtualization is supported
+  command: "egrep --color 'vmx|svm' /proc/cpuinfo"
+  register: virtualization_enabled
+  changed_when: false
+
+- fail:
+    msg: 'virtualization is not enabled!'
+  when: virtualization_enabled.stdout_lines | length == 0
+
+- name: add oracle apt key
+  apt_key:
+    url: 'https://www.virtualbox.org/download/oracle_vbox_2016.asc'
+    state: 'present'
+  become: true
+
+- name: add oracle apt repo
+  apt_repository:
+    repo: "deb https://download.virtualbox.org/virtualbox/debian {{ base_distro[ansible_distribution][ansible_distribution_release] }} contrib"
+    state: 'present'
+    update_cache: true
+  become: true
+
+- name: install virtualbox
+  apt:
+    name: 'virtualbox'
+    state: 'present'
+  become: true
+
