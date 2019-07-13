@@ -17,8 +17,8 @@
 - include: install_shutter.yml
   tags: shutter
 
-- include: keyboard_shortcuts/configure_keyboard_shortcuts.yml
-  tags: shortcuts
+- include: dconf/configure_dconf.yml
+  tags: dconf
 
 - include: install_terraform.yml
   tags: terraform

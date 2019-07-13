@@ -1,0 +1,8 @@
+---
+
+- name: 'set dconf key/value'
+  dconf:
+    key: '{{ dconf_dir.key }}/{{ item.key }}'
+    value: '{{ item.value }}'
+    state: 'present'
+  loop: '{{ dconf_dir.value | dict2items }}'

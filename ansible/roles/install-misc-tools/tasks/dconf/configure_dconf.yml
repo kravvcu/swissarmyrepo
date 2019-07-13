@@ -1,0 +1,7 @@
+---
+
+- include: keyboard_shortcuts/configure_keyboard_shortcuts.yml
+  tags: shortcuts
+
+- include: sounds/configure_sounds.yml
+  tags: sound

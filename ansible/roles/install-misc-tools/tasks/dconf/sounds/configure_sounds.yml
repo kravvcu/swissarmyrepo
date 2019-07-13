@@ -1,0 +1,8 @@
+---
+
+- include: configure_sound.yml
+  loop: '{{ dconf.sound | dict2items }}'
+  loop_control:
+    loop_var: dconf_dir
+
+

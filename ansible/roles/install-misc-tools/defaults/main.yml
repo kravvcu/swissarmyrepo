@@ -1,18 +1,27 @@
 ---
 
-keyboard_shortcuts:
-  custom0:
-    name: 'chrome'
-    command: 'google-chrome-stable'
-    binding: "['<Alt>r']"
-  custom1:
-    name: 'firefox'
-    command: '/usr/bin/firefox'
-    binding: "['<Alt>g']"
-  custom2:
-    name: 'nemo'
-    command: '/usr/bin/nemo'
-    binding: "['<Alt>e']"
+dconf:
+  keyboard_shortcuts:
+    custom0:
+      name: 'chrome'
+      command: 'google-chrome-stable'
+      binding: "['<Alt>r']"
+    custom1:
+      name: 'firefox'
+      command: '/usr/bin/firefox'
+      binding: "['<Alt>g']"
+    custom2:
+      name: 'nemo'
+      command: '/usr/bin/nemo'
+      binding: "['<Alt>e']"
+  sound:
+    /org/cinnamon/sounds:
+      login-enabled: 'false'
+      logout-enabled: 'false'
+      switch-enabled: 'false'
+    /org/cinnamon/desktop/sound:
+      volume-sound-enabled: 'false'
+
 
 kubectl_version: 'v1.15.0'
 minikube_version: 'v1.2.0'
