@@ -1,0 +1,17 @@
+---
+
+- debug:
+    msg: "You need to pass -e 'gitconfig_name=\"<name>\"' -e gitconfig_email=<email> in order to properly generate gitconfig"
+  when: gitconfig_name is not defined or gitconfig_email is not defined
+
+- name: 'Generate gitconfig file'
+  template:
+    src    : 'gitconfig.j2'
+    dest   : '{{ ansible_env.HOME }}/.gitconfig'
+    owner  : '{{ ansible_user }}'
+    group  : '{{ ansible_user }}'
+    mode   : '0644'
+    backup : 'yes'
+  when:
+    - gitconfig_name is defined
+    - gitconfig_email is defined
