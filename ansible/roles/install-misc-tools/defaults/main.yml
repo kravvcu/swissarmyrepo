@@ -14,6 +14,10 @@ dconf:
       name: 'nemo'
       command: '/usr/bin/nemo'
       binding: "['<Alt>e']"
+    custom3:
+      name: 'terminator'
+      command: '/usr/bin/terminator'
+      binding: "['<Alt>t']"
   sound:
     /org/cinnamon/sounds:
       login-enabled: 'false'
