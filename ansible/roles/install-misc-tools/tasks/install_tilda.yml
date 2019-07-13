@@ -17,3 +17,15 @@
   copy:
     src: 'tilda_config_0'
     dest: '{{ ansible_env.HOME }}/.config/tilda/config_0'
+
+# make tilda run on startup
+- name: make sure autostart dir is created
+  file:
+    path: '{{ ansible_env.HOME }}/.config/autostart'
+    state: 'directory'
+    mode: '0775'
+
+- name: copy tilda autostart config
+  copy:
+    src: 'tilda_autostart'
+    dest: '{{ ansible_env.HOME }}/.config/autostart/tilda.desktop'
