@@ -21,6 +21,8 @@ sudo pip install setuptools
 sudo pip install virtualenv virtualenvwrapper
 sudo pip install psutil
 
+# ADJUST ALL TO AN UBUNTU / DEBIAN installation
+
 # ADD
 # export WORKON_HOME=$HOME/.virtualenvs
 # export PROJECT_HOME=$HOME/Devel
@@ -35,7 +37,9 @@ sudo pip install psutil
 # reconfigure ohmyzsh theme in .zshrc
 # configure zsh plugins (kube-ps1 docker) + PROMPT=$PROMPT'$(kube_ps1) '
 
-# install java from oracle
+# add synapse to startup
+
+# install java from oracle or openjdk
 
 # run ansible: shell.yml, provision.yml
 
@@ -49,3 +53,4 @@ sudo pip install psutil
 # install spotify
 # install signal
 # install discord
+
