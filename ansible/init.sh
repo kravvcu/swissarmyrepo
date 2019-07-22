@@ -28,6 +28,9 @@ sudo pip install psutil
 # export PROJECT_HOME=$HOME/Devel
 # source /usr/local/bin/virtualenvwrapper.sh
 
+# keyboard shortcuts to move windows to different workspaces
+# zsh: ALT+F shorcut should move to end of the word not to the beginning of the next one
+
 #
 # mkvirtualenv ansible
 # pip install ansible
@@ -53,4 +56,4 @@ sudo pip install psutil
 # install spotify
 # install signal
 # install discord
-
+# install GUI apps only when GUI is available
