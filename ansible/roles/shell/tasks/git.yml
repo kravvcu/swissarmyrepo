@@ -12,6 +12,3 @@
     group  : '{{ ansible_user }}'
     mode   : '0644'
     backup : 'yes'
-  when:
-    - gitconfig_name is defined
-    - gitconfig_email is defined

@@ -1,3 +1,4 @@
+#jinja2: trim_blocks:False
 [core]
   editor = vim
 [push]
@@ -28,5 +29,5 @@
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 
 [user]
-  email = {{ gitconfig_email }}
-  name  = {{ gitconfig_name }}
+  email = {% if gitconfig_email is defined %}{{ gitconfig_email }}{% endif %}
+  name  = {% if gitconfig_name is defined %}{{ gitconfig_name }}{% endif %}
