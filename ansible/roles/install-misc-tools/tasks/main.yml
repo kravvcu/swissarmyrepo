@@ -43,3 +43,7 @@
   tags:
     - helm
     - helm-only
+
+- include: install_spotify.yml
+  tags:
+    - spotify

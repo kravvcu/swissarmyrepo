@@ -3,5 +3,5 @@
 - hosts: all
   roles:
     - install-chrome
-    - install-misc-tools
     - install-docker
+    - install-misc-tools

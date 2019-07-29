@@ -52,7 +52,6 @@ sudo pip install psutil
 # zsh change prompt to view kubectl context
 # install go compiler + configure ~/.zprofile with new PATH
 # docker bash / zsh completion
-# install spotify
 # install signal + add to startup + hide to tray
 # install discord + add to startup
 # install GUI apps only when GUI is available
