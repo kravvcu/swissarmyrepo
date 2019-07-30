@@ -18,7 +18,7 @@
   rs = !git reset --soft HEAD~ && git reset HEAD .
 
   # remove merged local branches
-  pl = !git branch --merged | grep -P 'TECH|GTIP' | xargs git branch -D
+  pl = !git branch --merged | xargs git branch -D
 
   # fetches repository and synchronizes currently checked out branch with the same remotely tracked one
   fprc = !git fetch --prune $(git remote | head -n 1) && git reset --hard $(git remote | head -n 1)/$(git symbolic-ref --short HEAD)
