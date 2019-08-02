@@ -1,0 +1,29 @@
+---
+
+- name: install dependencies
+  apt:
+    name: '{{ item }}'
+    state: 'present'
+  loop:
+    - 'apt-transport-https'
+    - 'ca-certificates'
+  become: true
+
+- name: add GCP gpg key
+  apt_key:
+    url: 'https://packages.cloud.google.com/apt/doc/apt-key.gpg'
+    state: 'present'
+  become: true
+
+- name: add GCP apt repository
+  apt_repository:
+    repo: 'deb https://packages.cloud.google.com/apt cloud-sdk main'
+    state: 'present'
+    update_cache: true
+  become: true
+
+- name: install google-cloud-sdk
+  apt:
+    name: 'google-cloud-sdk'
+    state: 'present'
+  become: true
