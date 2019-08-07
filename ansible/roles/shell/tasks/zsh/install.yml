@@ -1,0 +1,32 @@
+---
+
+- name: install zsh
+  apt:
+    name: 'zsh'
+    state: 'present'
+    update_cache: true
+    cache_valid_time: 86400
+  become: true
+
+- name: check if oh-my-zsh already installed
+  stat:
+    path: '{{ ansible_env.HOME }}/.oh-my-zsh'
+  register: oh_my_zsh
+
+- name: install oh-my-zsh
+  when: not oh_my_zsh.stat.exists
+  block:
+
+    - name: download oh-my-zsh
+      get_url:
+        dest: '/tmp/oh-my-zsh-install.sh'
+        url: 'https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
+        mode: '0755'
+
+    - name: run the install script
+      command: '/tmp/oh-my-zsh-install.sh'
+
+    - name: remove the install script
+      file:
+        path: '/tmp/oh-my-zsh-install.sh'
+        state: 'absent'

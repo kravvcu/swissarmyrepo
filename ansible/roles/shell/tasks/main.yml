@@ -12,21 +12,16 @@
     mode   : '0644'
     backup : 'yes'
 
-- name: 'Make sure cli_aliases is sourced [.zshrc]'
-  blockinfile:
-    path   : '{{ ansible_env.HOME }}/.zshrc'
-    backup : 'yes'
-    state  : 'present'
-    block  : |
-      if [ -f {{ ansible_env.HOME }}/.cli_aliases ]; then
-        . {{ ansible_env.HOME }}/.cli_aliases
-      fi
+- include: zsh/main.yml
+  tags: zsh
 
 - name: make sure cli_aliases is sourced [.bashrc]
   blockinfile:
     path: '{{ ansible_env.HOME }}/.bashrc'
     backup: 'yes'
     state: 'present'
+    markerk_begin: 'CLI ALIASES'
+    marker_end: 'CLI ALIASES'
     block: |
       if [ -f {{ ansible_env.HOME }}/.cli_aliases ]; then
         . {{ ansible_env.HOME }}/.cli_aliases

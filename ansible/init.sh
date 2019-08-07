@@ -34,9 +34,9 @@ sudo pip install psutil
 # mkvirtualenv ansible
 # pip install ansible
 
-# manual: install zsh (reconfigure by ansible later)
-# install ohmyzsh
-# reconfigure ohmyzsh theme in .zshrc
+# change gitconfig ansible so that even when user / email not provided, ansible wont change
+# the current configuration
+
 # configure zsh plugins (kube-ps1 docker) + PROMPT=$PROMPT'$(kube_ps1) '
 
 # add synapse to startup

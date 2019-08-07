@@ -1,0 +1,32 @@
+---
+
+- name: change zsh theme
+  lineinfile:
+    regexp: "^ZSH_THEME"
+    line: 'ZSH_THEME="philips"'
+    path: "{{ ansible_env.HOME }}/.zshrc"
+
+- name: make sure cli_aliases is sourced [.zshrc]
+  blockinfile:
+    path: '{{ ansible_env.HOME }}/.zshrc'
+    backup: 'yes'
+    state: 'present'
+    marker_begin: 'BEGIN CLI ALIASES'
+    marker_end: 'END CLI ALIASES'
+    block: |
+      if [ -f {{ ansible_env.HOME }}/.cli_aliases ]; then
+        . {{ ansible_env.HOME }}/.cli_aliases
+      fi
+
+- name: add kubectl completion
+  blockinfile:
+    path: '{{ ansible_env.HOME }}/.zshrc'
+    backup: 'yes'
+    state: 'present'
+    marker_begin: 'BEGIN ZSH COMPLETION'
+    marker_end: 'END ZSH COMPLETION'
+    block: |
+      if type kubectl > /dev/null; then
+        source <(kubectl completion zsh)
+      fi
+
