@@ -5,6 +5,9 @@
     update_cache: yes
     cache_valid_time: 3600
 
+- include: install_tar_excludes.yml
+  tags: tar
+
 - include: install_vim.yml
   tags: vim
 
