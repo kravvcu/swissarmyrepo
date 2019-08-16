@@ -55,3 +55,4 @@ sudo pip install psutil
 # install signal + add to startup + hide to tray
 # install discord + add to startup
 # install GUI apps only when GUI is available
+# install smplayer
