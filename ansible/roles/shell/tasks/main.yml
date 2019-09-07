@@ -20,7 +20,7 @@
     path: '{{ ansible_env.HOME }}/.bashrc'
     backup: 'yes'
     state: 'present'
-    markerk_begin: 'CLI ALIASES'
+    marker_begin: 'CLI ALIASES'
     marker_end: 'CLI ALIASES'
     block: |
       if [ -f {{ ansible_env.HOME }}/.cli_aliases ]; then

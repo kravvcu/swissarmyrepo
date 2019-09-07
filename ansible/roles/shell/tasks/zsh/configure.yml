@@ -23,10 +23,15 @@
     path: '{{ ansible_env.HOME }}/.zshrc'
     backup: 'yes'
     state: 'present'
-    marker_begin: 'BEGIN ZSH COMPLETION'
-    marker_end: 'END ZSH COMPLETION'
+    marker_begin: 'BEGIN KUBECTL ZSH COMPLETION'
+    marker_end: 'END KUBECTL ZSH COMPLETION'
     block: |
       if type kubectl > /dev/null; then
         source <(kubectl completion zsh)
       fi
 
+- name: configure current user's shell to zsh
+  user:
+    name: '{{ ansible_env.USER }}'
+    shell: '/bin/zsh'
+  become: true

@@ -3,6 +3,6 @@
 - name: install tar exclude file
   copy:
     src: tar-excludes
-    dest: '{{ ansible_env }}/.tar-excludes'
+    dest: '{{ ansible_env.HOME }}/.tar-excludes'
     mode: '0600'
 

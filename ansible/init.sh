@@ -2,6 +2,9 @@
 
 set -e
 
+# possibly will error out on upgrade
+# try dpkg --configure -a first
+
 sudo apt update
 sudo apt upgrade --yes
 sudo apt install -y python-pip \
