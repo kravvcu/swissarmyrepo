@@ -17,3 +17,15 @@
   copy:
     src: 'synapse_config.json'
     dest: '{{ ansible_env.HOME }}/.config/synapse/config.json'
+
+# make synapse run on startup
+- name: make sure autostart dir is created
+  file:
+    path: '{{ ansible_env.HOME }}/.config/autostart'
+    state: 'directory'
+    mode: '0775'
+
+- name: copy synapse autostart config
+  copy:
+    src: 'synapse_autostart'
+    dest: '{{ ansible_env.HOME }}/.config/autostart/synapse.desktop'
