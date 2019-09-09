@@ -30,11 +30,17 @@
         source <(kubectl completion zsh)
       fi
 
-- name: configure current user's shell to zsh
-  user:
-    name: '{{ ansible_env.USER }}'
-    shell: '/bin/zsh'
-  become: true
+- name: add minikube completion
+  blockinfile:
+    path: '{{ ansible_env.HOME }}/.zshrc'
+    backup: 'yes'
+    state: 'present'
+    marker_begin: 'BEGIN MINIKUBE ZSH COMPLETION'
+    marker_end: 'END MINIKUBE ZSH COMPLETION'
+    block: |
+      if type minikube > /dev/null; then
+        source <(minikube completion zsh)
+      fi
 
 - name: add virtualenvwrapper environment variable exports
   blockinfile:
@@ -46,4 +52,12 @@
     block: |
       export WORKON_HOME=$HOME/.virtualenvs
       export PROJECT_HOME=$HOME/Devel
-      source /usr/local/bin/virtualenvwrapper.sh
+      if type virtualenvwrapper.sh > /dev/null; then
+        source /usr/local/bin/virtualenvwrapper.sh
+      fi
+
+- name: configure current user's shell to zsh
+  user:
+    name: '{{ ansible_env.USER }}'
+    shell: '/bin/zsh'
+  become: true
