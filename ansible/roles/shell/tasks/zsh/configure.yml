@@ -35,3 +35,15 @@
     name: '{{ ansible_env.USER }}'
     shell: '/bin/zsh'
   become: true
+
+- name: add virtualenvwrapper environment variable exports
+  blockinfile:
+    path: '{{ ansible_env.HOME }}/.zshrc'
+    backup: 'yes'
+    state: 'present'
+    marker_begin: 'BEGIN VIRTUALENVWRAPPER'
+    marker_end: 'END VIRTUALENVWRAPPER'
+    block: |
+      export WORKON_HOME=$HOME/.virtualenvs
+      export PROJECT_HOME=$HOME/Devel
+      source /usr/local/bin/virtualenvwrapper.sh
