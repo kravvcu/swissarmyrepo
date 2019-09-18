@@ -54,3 +54,7 @@
 - include: install_spotify.yml
   tags:
     - spotify
+
+- include: install_udev_rules.yml
+  tags:
+    - udev

@@ -1,0 +1,14 @@
+---
+
+- name: check udev version
+  command: 'udevadm --version'
+  become: true
+  register: udevadm_version
+
+- name: download new udev rules
+  get_url:
+    url: 'https://raw.githubusercontent.com/Yubico/libu2f-host/master/70-u2f.rules'
+    dest: '/etc/udev/rules.d/'
+    mode: '0644'
+  become: true
+  when: udevadm_version.stdout >= 188
