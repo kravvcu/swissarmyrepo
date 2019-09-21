@@ -2,11 +2,11 @@
 
 set -e
 
-# possibly will error out on upgrade
-# try dpkg --configure -a first
-
-sudo apt update
-sudo apt upgrade --yes
+# sudo apt update
+# sudo apt upgrade --yes
+# when fails run dpkg --configure -a
+# when that fails run: apt install -f
+# rerun upgrade
 sudo apt install -y python-pip \
                     python-dev \
                     git \
@@ -23,6 +23,12 @@ sudo pip install -U pip
 sudo pip install setuptools
 sudo pip install virtualenv virtualenvwrapper
 sudo pip install psutil
+
+#export WORKON_HOME=$HOME/.virtualenvs
+#export PROJECT_HOME=$HOME/Devel
+#if type virtualenvwrapper.sh > /dev/null; then
+#  source /usr/local/bin/virtualenvwrapper.sh
+#fi
 
 # ADJUST ALL TO AN UBUNTU / DEBIAN installation
 
