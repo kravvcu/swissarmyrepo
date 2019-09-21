@@ -56,6 +56,18 @@
         source /usr/local/bin/virtualenvwrapper.sh
       fi
 
+- name: configure zsh plugins
+  lineinfile:
+    regexp: "^plugins"
+    line: 'plugins=(git docker kube-ps1)'
+    path: "{{ ansible_env.HOME }}/.zshrc"
+
+- name: configure zsh PROMPT to view kubectl context
+  lineinfile:
+    regexp: "^PROMPT"
+    line: "PROMPT=$PROMPT'$(kube_ps1) '"
+    path: "{{ ansible_env.HOME }}/.zshrc"
+
 - name: configure current user's shell to zsh
   user:
     name: '{{ ansible_env.USER }}'

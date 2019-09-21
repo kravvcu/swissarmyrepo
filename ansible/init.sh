@@ -40,8 +40,6 @@ sudo pip install psutil
 # change gitconfig ansible so that even when user / email not provided, ansible wont change
 # the current configuration
 
-# configure zsh plugins (kube-ps1 docker) + PROMPT=$PROMPT'$(kube_ps1) '
-
 # install java from oracle or openjdk
 
 # run ansible: shell.yml, provision.yml
@@ -49,7 +47,6 @@ sudo pip install psutil
 # install intellij
 # update knowledgebase from backup
 # zsh change prompt to view kubectl context
-# install go compiler + configure ~/.zprofile with new PATH
 # docker bash / zsh completion
 # install signal + add to startup + hide to tray
 # install discord + add to startup
