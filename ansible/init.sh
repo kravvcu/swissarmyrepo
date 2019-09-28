@@ -17,7 +17,8 @@ sudo apt install -y python-pip \
                     screen \
                     unzip \
                     xclip \
-                    terminator
+                    terminator \
+                    whois
 
 sudo pip install -U pip
 sudo pip install setuptools
