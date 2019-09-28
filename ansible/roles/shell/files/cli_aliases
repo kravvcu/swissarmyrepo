@@ -46,6 +46,8 @@ alias kd='kubectl describe'
 alias kdp='kubectl describe pods'
 alias kdd='kubectl describe deploy'
 
+alias kc='kubectl create'
+
 # terraform
 alias tp='terraform plan'
 alias ta='terraform apply'
