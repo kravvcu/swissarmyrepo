@@ -80,3 +80,9 @@ Running terraform in the following sequence SHOULD set up a working environment:
 * addresses
 * firewall
 * k8s
+
+### Other
+
+```zsh
+gcloud services enable container.googleapis.com
+```
