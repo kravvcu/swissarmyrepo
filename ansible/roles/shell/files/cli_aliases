@@ -32,6 +32,7 @@ alias gs='gsutil'
 alias giff='git diff'
 
 # k8s
+alias k='kubectl'
 alias kg='kubectl get'
 alias kgp='kubectl get pods'
 alias kgs='kubectl get svc'
