@@ -53,3 +53,4 @@ sudo pip install psutil
 # install discord + add to startup
 # install GUI apps only when GUI is available
 # install smplayer
+# install fzf
