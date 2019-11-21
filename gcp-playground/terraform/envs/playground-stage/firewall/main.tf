@@ -5,7 +5,7 @@ data "http" "own-ip" {
 resource "google_compute_firewall" "permit-all-self" {
   name = "${var.environment-prefix}-permit-all-self"
 
-  network = "${data.terraform_remote_state.network.network_name}"
+  network = "${data.terraform_remote_state.network.outputs.network_name}"
 
   allow {
     protocol = "icmp"
@@ -24,8 +24,8 @@ resource "google_compute_firewall" "permit-all-self" {
 
 resource "google_compute_firewall" "permit-subnetwork-traffic" {
   name = "${var.environment-prefix}-permit-subnetwork-traffic"
-  network = "${data.terraform_remote_state.network.network_name}"
-  source_ranges = [ "${data.terraform_remote_state.network.subnetwork_ipv4_cidr}" ]
+  network = "${data.terraform_remote_state.network.outputs.network_name}"
+  source_ranges = [ "${data.terraform_remote_state.network.outputs.subnetwork_ipv4_cidr}" ]
 
   allow {
     protocol = "icmp"

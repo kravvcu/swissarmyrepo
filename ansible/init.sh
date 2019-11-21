@@ -54,3 +54,4 @@ sudo pip install psutil
 # install GUI apps only when GUI is available
 # install smplayer
 # install fzf
+# install emacs
