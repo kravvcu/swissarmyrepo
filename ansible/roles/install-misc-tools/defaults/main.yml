@@ -9,10 +9,6 @@ dconf:
     name: "'firefox'"
     command: "'/usr/bin/firefox'"
     binding: "['<Alt>g']"
-  /org/cinnamon/desktop/keybindings/custom-keybindings/custom2:
-    name: "'nemo'"
-    command: "'/usr/bin/nemo'"
-    binding: "['<Alt>e']"
   /org/cinnamon/desktop/keybindings/custom-keybindings/custom3:
     name: "'terminator'"
     command: "'/usr/bin/terminator'"
