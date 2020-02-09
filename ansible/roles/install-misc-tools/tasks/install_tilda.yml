@@ -29,3 +29,8 @@
   copy:
     src: 'tilda_autostart'
     dest: '{{ ansible_env.HOME }}/.config/autostart/tilda.desktop'
+
+- name: copy tilda style.css
+  copy:
+    src: 'tilda_style.css'
+    dest: '{{ ansible_env.HOME }}/.config/tilda/style.css'
