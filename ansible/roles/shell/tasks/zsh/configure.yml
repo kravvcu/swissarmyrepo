@@ -6,66 +6,10 @@
     line: 'ZSH_THEME="philips"'
     path: "{{ ansible_env.HOME }}/.zshrc"
 
-- name: make sure cli_aliases is sourced [.zshrc]
-  blockinfile:
-    path: '{{ ansible_env.HOME }}/.zshrc'
-    backup: 'yes'
-    state: 'present'
-    marker_begin: 'BEGIN CLI ALIASES'
-    marker_end: 'END CLI ALIASES'
-    block: |
-      if [ -f {{ ansible_env.HOME }}/.cli_aliases ]; then
-        . {{ ansible_env.HOME }}/.cli_aliases
-      fi
-
-- name: add kubectl completion
-  blockinfile:
-    path: '{{ ansible_env.HOME }}/.zshrc'
-    backup: 'yes'
-    state: 'present'
-    marker_begin: 'BEGIN KUBECTL ZSH COMPLETION'
-    marker_end: 'END KUBECTL ZSH COMPLETION'
-    block: |
-      if type kubectl > /dev/null; then
-        source <(kubectl completion zsh)
-      fi
-
-- name: add minikube completion
-  blockinfile:
-    path: '{{ ansible_env.HOME }}/.zshrc'
-    backup: 'yes'
-    state: 'present'
-    marker_begin: 'BEGIN MINIKUBE ZSH COMPLETION'
-    marker_end: 'END MINIKUBE ZSH COMPLETION'
-    block: |
-      if type minikube > /dev/null; then
-        source <(minikube completion zsh)
-      fi
-
-- name: add virtualenvwrapper environment variable exports
-  blockinfile:
-    path: '{{ ansible_env.HOME }}/.zshrc'
-    backup: 'yes'
-    state: 'present'
-    marker_begin: 'BEGIN VIRTUALENVWRAPPER'
-    marker_end: 'END VIRTUALENVWRAPPER'
-    block: |
-      export WORKON_HOME=$HOME/.virtualenvs
-      export PROJECT_HOME=$HOME/Devel
-      if type virtualenvwrapper.sh > /dev/null; then
-        source /usr/local/bin/virtualenvwrapper.sh
-      fi
-
 - name: configure zsh plugins
   lineinfile:
     regexp: "^plugins"
     line: 'plugins=(git docker kube-ps1)'
-    path: "{{ ansible_env.HOME }}/.zshrc"
-
-- name: configure zsh PROMPT to view kubectl context
-  lineinfile:
-    regexp: "^PROMPT"
-    line: "PROMPT=$PROMPT'$(kube_ps1) '"
     path: "{{ ansible_env.HOME }}/.zshrc"
 
 - name: configure current user's shell to zsh
@@ -73,3 +17,19 @@
     name: '{{ ansible_env.USER }}'
     shell: '/bin/zsh'
   become: true
+
+- name: copy own zshrc configuration
+  copy:
+    src: 'zshrc'
+    dest: '{{ ansible_env.HOME }}/.my-zshrc'
+
+- name: source own zshrc from main one
+  blockinfile:
+    path: '{{ ansible_env.HOME }}/.zshrc'
+    state: 'present'
+    marker_begin: 'BEGIN OWN ZSH SOURCE'
+    marker_end: 'END OWN ZSH SOURCE'
+    block: |
+      if [ -f "$HOME/.my-zshrc" ]; then
+        source "$HOME/.my-zshrc"
+      fi

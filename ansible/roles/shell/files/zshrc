@@ -1,0 +1,28 @@
+PROMPT=$PROMPT'$(kube_ps1) '
+
+export VISUAL='emacs -nw'
+export EDITOR='emacs -nw'
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+
+alias emacs='emacs -nw'
+alias e='emacs'
+
+if [ -f /home/kravvcu/.cli_aliases ]; then
+  . /home/kravvcu/.cli_aliases
+fi
+
+if type kubectl > /dev/null; then
+  source <(kubectl completion zsh)
+fi
+
+if type minikube > /dev/null; then
+  source <(minikube completion zsh)
+fi
+
+if type virtualenvwrapper.sh > /dev/null; then
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
