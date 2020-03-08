@@ -11,6 +11,9 @@
 - include: install_vim.yml
   tags: vim
 
+- include: install_emacs.yml
+  tags: emacs
+
 - include: install_tilda.yml
   tags: tilda
 

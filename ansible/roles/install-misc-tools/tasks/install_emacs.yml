@@ -1,0 +1,23 @@
+---
+
+- name: 'install emacs'
+  apt:
+    name: 'emacs'
+    state: 'present'
+  become: true
+    
+- name: 'copy emacs config'
+  copy:
+   src: 'emacs'
+   dest: '{{ ansible_env.HOME }}/.emacs'
+   mode: '0600'
+
+- debug:
+    msg: |
+      You will need to retrieve the new Melpa GPG key to be able to install
+      new packages. Run:
+
+      gpg --homedir ~/.emacs.d/elpa/gnupg --receive-keys 066DAFCB81E42C40
+
+      More information:
+      https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure
