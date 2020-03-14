@@ -6,6 +6,30 @@
     state: 'present'
   become: true
 
+- name: 'create the systemd user directory'
+  file:
+    path: '{{ ansible_env.HOME }}/.config/systemd/user'
+    state: 'directory'
+    mode: 0700
+
+- name: 'install emacs server unit file'
+  copy:
+    src: 'emacs.service'
+    dest: '{{ ansible_env.HOME }}/.config/systemd/user/emacs.service'
+    mode: 0644
+
+- name: 'enable emacs service'
+  systemd:
+    name: 'emacs'
+    scope: 'user'
+    enabled: 'yes'
+
+- name: 'start emacs service'
+  systemd:
+    name: 'emacs'
+    scope: 'user'
+    state: 'started'
+
 - debug:
     msg: |
       You will need to retrieve the new Melpa GPG key to be able to install
