@@ -4,15 +4,19 @@ dconf:
   /org/cinnamon/desktop/keybindings/custom-keybindings/custom0:
     name: "'chrome'"
     command: "'google-chrome-stable'"
-    binding: "['<Alt>r']"
+    binding: "['<Super>r']"
   /org/cinnamon/desktop/keybindings/custom-keybindings/custom1:
     name: "'firefox'"
     command: "'/usr/bin/firefox'"
-    binding: "['<Alt>g']"
-  /org/cinnamon/desktop/keybindings/custom-keybindings/custom3:
+    binding: "['<Super>g']"
+  /org/cinnamon/desktop/keybindings/custom-keybindings/custom2:
     name: "'terminator'"
     command: "'/usr/bin/terminator'"
-    binding: "['<Alt>t']"
+    binding: "['<Super>t']"
+  /org/cinnamon/desktop/keybindings/custom-keybindings/custom3:
+    name: "'emacs'"
+    command: "'/usr/bin/emacsclient -c'"
+    binding: "['<Super>k']"
   /org/cinnamon/sounds:
     login-enabled: 'false'
     logout-enabled: 'false'
