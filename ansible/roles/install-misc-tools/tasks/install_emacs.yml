@@ -23,12 +23,14 @@
     name: 'emacs'
     scope: 'user'
     enabled: 'yes'
+    daemon_reload: 'yes'
 
 - name: 'start emacs service'
   systemd:
     name: 'emacs'
     scope: 'user'
     state: 'started'
+    daemon_reload: 'yes'
 
 - debug:
     msg: |
