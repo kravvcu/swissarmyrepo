@@ -16,3 +16,11 @@
   :config (load-theme 'spacemacs-dark t))
 
 (use-package projectile)
+
+;; don't clobber the fs tree with backup and auto-saves
+;; place them in system `temp` directory
+
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
