@@ -6,6 +6,12 @@
     state: 'present'
   become: true
 
+- name: 'copy emacs config'
+  copy:
+   src: 'emacs'
+   dest: '{{ ansible_env.HOME }}/.emacs'
+   mode: '0600'
+
 - name: 'create the systemd user directory'
   file:
     path: '{{ ansible_env.HOME }}/.config/systemd/user'
@@ -41,15 +47,4 @@
 
       More information:
       https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure
-
-- name: 'copy emacs config'
-  copy:
-   src: 'emacs'
-   dest: '{{ ansible_env.HOME }}/.emacs'
-   mode: '0600'
-
-# M-x package-refresh-packages
-# M-x install-package zenburn-theme
-# M-x customize-themes # or probably copying the config from `files` will suffice
-
 
