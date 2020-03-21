@@ -5,17 +5,11 @@
     update_cache: yes
     cache_valid_time: 3600
 
-- include: install_snapd.yml
-  tags: snapd
-
 - include: install_tar_excludes.yml
   tags: tar
 
 - include: install_vim.yml
   tags: vim
-
-- include: install_emacs.yml
-  tags: emacs
 
 - include: install_tilda.yml
   tags: tilda

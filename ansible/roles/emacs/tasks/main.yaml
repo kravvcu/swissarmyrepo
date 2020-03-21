@@ -1,0 +1,7 @@
+---
+
+- include: compile.yaml
+  tags: emacs
+
+- include: configure.yaml 
+  tags: emacs

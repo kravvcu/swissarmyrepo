@@ -15,7 +15,7 @@ dconf:
     binding: "['<Super>t']"
   /org/cinnamon/desktop/keybindings/custom-keybindings/custom3:
     name: "'emacs'"
-    command: "'/usr/bin/emacsclient -c'"
+    command: "'/usr/local/bin/emacsclient -c'"
     binding: "['<Super>k']"
   /org/cinnamon/sounds:
     login-enabled: 'false'

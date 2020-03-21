@@ -1,0 +1,58 @@
+---
+
+- name: 'install emacs build deps'
+  apt:
+    name:
+    - 'build-essential'
+    - 'texinfo'
+    - 'libx11-dev'
+    - 'libxpm-dev'
+    - 'libjpeg-dev'
+    - 'libpng-dev'
+    - 'libtiff-dev'
+    - 'libgtk-3-dev'
+    - 'libncurses-dev'
+    - 'libgnutls28-dev'
+    - 'libgif-dev'
+    state: 'present'
+    update_cache: true
+    cache_valid_time: 86400
+  become: true
+
+- name: 'check if already installed'
+  shell: command -v emacs
+  failed_when: false
+  changed_when: false
+  register: emacs
+
+- when: emacs.rc != 0
+  block:
+   - name: 'download emacs source code tar.gz'
+     get_url:
+       url: 'http://ftp.gnu.org/gnu/emacs/emacs-{{ emacs_version }}.tar.gz' 
+       dest: '/tmp/emacs-{{ emacs_version }}.tar.gz'
+       checksum: '{{ emacs_checksum }}'
+
+   - name: 'create unarchive directory'
+     file:
+       path: '{{ ansible_env.HOME }}/.emacs-src'
+       state: 'directory'
+
+   - name: 'unarchive the package'
+     unarchive:
+       src: '/tmp/emacs-{{ emacs_version }}.tar.gz'
+       dest: '{{ ansible_env.HOME }}/.emacs-src'
+       remote_src: true
+
+   - name: 'run configure and make'
+     shell: |
+       ./configure
+       make
+     args:
+       chdir: '{{ ansible_env.HOME }}/.emacs-src/emacs-{{ emacs_version }}'
+
+   - name: 'install'
+     command: 'make install'
+     args:
+       chdir: '{{ ansible_env.HOME }}/.emacs-src/emacs-{{ emacs_version }}'
+     become: true
