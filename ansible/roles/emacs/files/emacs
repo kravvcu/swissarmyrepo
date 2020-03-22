@@ -16,6 +16,7 @@
   :config (load-theme 'spacemacs-dark t))
 
 (use-package projectile)
+(use-package markdown-mode)
 
 ;; don't clobber the fs tree with backup and auto-saves
 ;; place them in system `temp` directory
