@@ -15,7 +15,6 @@
   :ensure spacemacs-theme
   :config (load-theme 'spacemacs-dark t))
 
-(use-package projectile)
 (use-package markdown-mode)
 (use-package magit)
 
@@ -32,6 +31,14 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "%d/%d) ")
   (setq ivy-initial-inputs-alist nil))
+
+(use-package projectile
+  :config
+  (projectile-mode 1)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+  (setq projectile-completion-system 'ivy))
+
 
 ;; don't clobber the fs tree with backup and auto-saves
 ;; place them in system `temp` directory
