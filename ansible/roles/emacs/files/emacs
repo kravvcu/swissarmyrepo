@@ -18,6 +18,9 @@
 (use-package markdown-mode)
 (use-package magit)
 
+(use-package which-key
+  :config (which-key-mode))
+
 ;; install ivy mode, swiper and counsel
 (use-package counsel
   :bind
