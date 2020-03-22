@@ -18,6 +18,20 @@
 (use-package projectile)
 (use-package markdown-mode)
 
+;; install ivy mode, swiper and counsel
+(use-package counsel
+  :bind
+  ("C-s" . 'swiper)
+  ("M-x" . 'counsel-M-x)
+
+  :config
+  (use-package smex)
+
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "%d/%d) ")
+  (setq ivy-initial-inputs-alist nil))
+
 ;; don't clobber the fs tree with backup and auto-saves
 ;; place them in system `temp` directory
 
