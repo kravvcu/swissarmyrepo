@@ -17,6 +17,7 @@
 
 (use-package projectile)
 (use-package markdown-mode)
+(use-package magit)
 
 ;; install ivy mode, swiper and counsel
 (use-package counsel
