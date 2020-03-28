@@ -17,6 +17,8 @@
   :ensure spacemacs-theme
   :config (load-theme 'spacemacs-dark t))
 
+(setq column-number-mode t)
+
 (use-package markdown-mode)
 
 (use-package magit
