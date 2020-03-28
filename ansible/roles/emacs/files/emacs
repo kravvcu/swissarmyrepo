@@ -49,6 +49,14 @@
   (setq projectile-current-project-on-switch 'move-to-end))
 
 
+;; override M-DEL to backward-delete-word instead of backward-kill-word
+(defun backward-delete-word (arg)
+  "Delete word backwards. Do this ARG times."
+  (interactive "p")
+  (delete-region (point) (progn (backward-word arg) (point))))
+
+(global-set-key (kbd "M-DEL") 'backward-delete-word)
+
 ;; don't clobber the fs tree with backup and auto-saves
 ;; place them in system `temp` directory
 
