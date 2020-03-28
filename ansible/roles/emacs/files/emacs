@@ -20,7 +20,10 @@
 (use-package markdown-mode)
 
 (use-package magit
-  :bind ("C-x g" . 'magit-status))
+  :bind ("C-x g" . 'magit-status)
+
+  :config
+  (setq magit-save-repository-buffers 'dontask))
 
 (use-package which-key
   :config (which-key-mode))
