@@ -8,6 +8,9 @@
 - include: install_ag.yaml
   tags: ag
 
+- include: install_fd.yaml
+  tags: fd
+
 - include: install_tar_excludes.yml
   tags: tar
 

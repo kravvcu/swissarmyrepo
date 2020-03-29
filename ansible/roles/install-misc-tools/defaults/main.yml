@@ -42,3 +42,8 @@ kubectl_version: 'v1.15.0'
 minikube_version: 'v1.2.0'
 helm_version: 'v2.14.1'
 terraform_version: '0.12.9'
+
+# TODO Ubuntu 19.04 and above - possible from apt
+fd_version: 7.5.0
+fd_file: 'fd-musl_{{ fd_version }}_amd64.deb'
+fd_link: 'https://github.com/sharkdp/fd/releases/download/v{{ fd_version }}/{{ fd_file }}'

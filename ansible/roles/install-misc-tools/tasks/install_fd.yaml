@@ -1,0 +1,23 @@
+---
+
+- name: check if already installed
+  command: 'dpkg -l fd-musl'
+  changed_when: false
+  failed_when: false
+  register: dpkg_fd
+  check_mode: no
+
+- name: download and install if not installed
+  when: dpkg_fd.rc != 0
+  block:
+
+   - name: download fd
+     get_url:
+       url: '{{ fd_link }}'
+       dest: '/tmp/{{ fd_file }}'
+
+   - name: install fd
+     apt:
+       deb: '/tmp/{{ fd_file }}'
+       state: 'present'
+     become: true
