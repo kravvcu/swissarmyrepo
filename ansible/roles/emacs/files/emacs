@@ -49,9 +49,20 @@
 
 (use-package projectile
   :ensure counsel-projectile
+
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+
+  :bind
+  ("C-c C-f" . #'counsel-projectile-find-file)
+  ("C-c C-d" . #'counsel-projectile-find-dir)
+  ("C-c C-a" . #'counsel-projectile-ag)
+
   :config
-  (counsel-projectile-mode)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  ;; use projectile-mode instead of counsel-projectile-mode
+  ;; the 'setq' statements do not seem to modify the counsel-*
+  ;; version behaviour
+  (projectile-mode)
 
   (setq projectile-completion-system 'ivy)
   (setq projectile-switch-project-action 'projectile-dired)
