@@ -42,14 +42,15 @@
   :config
   (use-package smex)
 
-  (ivy-mode 1)
+  (ivy-mode)
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "%d/%d) ")
   (setq ivy-initial-inputs-alist nil))
 
 (use-package projectile
+  :ensure counsel-projectile
   :config
-  (projectile-mode 1)
+  (counsel-projectile-mode)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
   (setq projectile-completion-system 'ivy)
