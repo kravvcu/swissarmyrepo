@@ -51,9 +51,7 @@
   (setq ivy-count-format "%d/%d) ")
   (setq ivy-initial-inputs-alist nil))
 
-(use-package projectile
-  :ensure counsel-projectile
-
+(use-package counsel-projectile
   :bind-keymap
   ("C-c p" . projectile-command-map)
 
