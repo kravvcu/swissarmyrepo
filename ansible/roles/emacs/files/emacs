@@ -87,8 +87,12 @@
   :hook
   (org-mode . (lambda () (org-bullets-mode 1))))
 
-;; set custom font size for org levels
+
 (custom-set-faces
+  ;; highlight the current line
+  '(hl-line ((t (:background "dark slate gray"))))
+
+  ;; set custom font size for org levels
   '(org-level-1 ((t (:height 1.1))))
   '(org-level-2 ((t (:height 1.1))))
   '(org-level-3 ((t (:height 1.1))))
