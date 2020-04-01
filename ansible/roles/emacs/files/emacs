@@ -82,6 +82,11 @@
 
 (global-set-key (kbd "M-DEL") 'backward-delete-word)
 
+;; org-mode
+(use-package org-bullets
+  :hook
+  (org-mode . (lambda () (org-bullets-mode 1))))
+
 ;; don't clobber the fs tree with backup and auto-saves
 ;; place them in system `temp` directory
 
