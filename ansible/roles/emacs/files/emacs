@@ -87,6 +87,14 @@
   :hook
   (org-mode . (lambda () (org-bullets-mode 1))))
 
+;; set custom font size for org levels
+(custom-set-faces
+  '(org-level-1 ((t (:height 1.1))))
+  '(org-level-2 ((t (:height 1.1))))
+  '(org-level-3 ((t (:height 1.1))))
+  '(org-level-4 ((t (:height 1.1))))
+  '(org-level-5 ((t (:height 1.1)))))
+
 ;; don't clobber the fs tree with backup and auto-saves
 ;; place them in system `temp` directory
 
