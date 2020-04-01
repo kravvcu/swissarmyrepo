@@ -87,7 +87,7 @@
   :hook
   (org-mode . (lambda () (org-bullets-mode 1))))
 
-
+;; custom styling
 (custom-set-faces
   ;; highlight the current line
   '(hl-line ((t (:background "dark slate gray"))))
@@ -97,7 +97,14 @@
   '(org-level-2 ((t (:height 1.1))))
   '(org-level-3 ((t (:height 1.1))))
   '(org-level-4 ((t (:height 1.1))))
-  '(org-level-5 ((t (:height 1.1)))))
+  '(org-level-5 ((t (:height 1.1))))
+
+  ;; set custom font size for markdown headers
+  '(markdown-header-face-1 ((t (:height 1.1))))
+  '(markdown-header-face-2 ((t (:height 1.1))))
+  '(markdown-header-face-3 ((t (:height 1.1))))
+  '(markdown-header-face-4 ((t (:height 1.1))))
+  '(markdown-header-face-5 ((t (:height 1.1)))))
 
 ;; don't clobber the fs tree with backup and auto-saves
 ;; place them in system `temp` directory
