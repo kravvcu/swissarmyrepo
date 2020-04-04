@@ -31,3 +31,6 @@
     scope: 'user'
     state: 'started'
     daemon_reload: 'yes'
+
+- debug:
+    msg: 'You will need to manually edit pam.d if using ecryptfs https://unix.stackexchange.com/questions/417162/use-systemd-user-services-with-ecryptfs'
