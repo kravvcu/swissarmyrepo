@@ -93,7 +93,10 @@
 ;; org-mode
 (use-package org-bullets
   :hook
-  (org-mode . (lambda () (org-bullets-mode 1))))
+  (org-mode . (lambda () (org-bullets-mode 1)))
+
+  :config
+  (setq org-log-done 'time))
 
 ;; custom styling
 (custom-set-faces
