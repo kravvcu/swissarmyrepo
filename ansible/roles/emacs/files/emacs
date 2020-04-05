@@ -98,6 +98,11 @@
   :config
   (setq org-log-done 'time))
 
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+
+(setq org-agenda-files (list "~/.org/agenda.org"))
+
 ;; custom styling
 (custom-set-faces
   ;; highlight the current line
