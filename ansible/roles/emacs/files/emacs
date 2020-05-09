@@ -37,7 +37,7 @@
 (use-package which-key
   :config (which-key-mode))
 
-# set highlighting on text overcrossing limit
+;; set highlighting on text overcrossing limit
 (require 'whitespace)
 (setq whitespace-line-column 80) ;; limit line length
 (setq whitespace-style '(face lines-tail))
