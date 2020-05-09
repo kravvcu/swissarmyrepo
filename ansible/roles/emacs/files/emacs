@@ -65,9 +65,9 @@
   ("C-c p" . projectile-command-map)
 
   :bind
-  ("C-c C-f" . #'counsel-projectile-find-file)
-  ("C-c C-d" . #'counsel-projectile-find-dir)
-  ("C-c C-a" . #'counsel-projectile-ag)
+  ("C-c f" . #'counsel-projectile-find-file)
+  ("C-c d" . #'counsel-projectile-find-dir)
+  ("C-c v" . #'counsel-projectile-ag)
 
   :config
   ;; use projectile-mode instead of counsel-projectile-mode
