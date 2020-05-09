@@ -99,9 +99,17 @@
   :config
   (setq org-log-done 'time))
 
+;; make the text in TODOs be column-aligned with the heading text
+(setq org-indent-indentation-per-level 1)
+(add-hook 'org-mode-hook 'org-indent-mode)
+
 ;; the default were just inserting a heading without 'todo'
 (define-key org-mode-map (kbd "<C-return>") 'org-insert-todo-heading-respect-content)
 (define-key org-mode-map (kbd "<M-return>") 'org-insert-todo-heading)
+
+;; the same as above for terminal-run emacs
+(define-key org-mode-map (kbd "<C-RET>") 'org-insert-todo-heading-respect-content)
+(define-key org-mode-map (kbd "<M-RET>") 'org-insert-todo-heading)
 
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
