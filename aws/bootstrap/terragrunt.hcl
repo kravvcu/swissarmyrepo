@@ -7,9 +7,10 @@ remote_state {
   }
 
   config = {
-    bucket  = "kc-playground-aws-tfstate"
-    key     = "bootstrap/${path_relative_to_include()}/terraform.tfstate"
-    region  = "eu-central-1"
+    bucket         = "kc-playground-aws-tfstate"
+    key            = "bootstrap/${path_relative_to_include()}/terraform.tfstate"
+    region         = "eu-central-1"
+    dynamodb_table = "kc-playground-aws-tfstate-lock"
   }
 }
 
