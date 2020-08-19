@@ -33,6 +33,9 @@ sudo pip install psutil
 
 # ADJUST ALL TO AN UBUNTU / DEBIAN installation
 
+# install tfenv: https://github.com/tfutils/tfenv
+# install tgenv: https://github.com/cunymatthieu/tgenv
+
 # zsh: ALT+F shorcut should move to end of the word not to the beginning of the next one
 #
 # mkvirtualenv ansible
@@ -54,3 +57,8 @@ sudo pip install psutil
 # install GUI apps only when GUI is available
 # install smplayer
 # install fzf
+
+# install awscli https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
+# install groff, glibc and less
+
+# add AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to .zprofile
