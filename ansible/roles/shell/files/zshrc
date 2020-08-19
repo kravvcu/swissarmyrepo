@@ -26,3 +26,5 @@ if type virtualenvwrapper.sh > /dev/null; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
