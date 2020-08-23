@@ -41,6 +41,10 @@ sudo pip install psutil
 # mkvirtualenv ansible
 # pip install ansible
 
+# install go - untar to /usr/local
+# export GOPATH="$HOME/.go"
+# export PATH="$PATH:/usr/local/go/bin:$HOME/go"
+
 # change gitconfig ansible so that even when user / email not provided, ansible wont change
 # the current configuration
 
