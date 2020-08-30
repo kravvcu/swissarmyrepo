@@ -1,16 +1,16 @@
+local provider = import "provider.libsonnet";
+
 {
-  AWSTerraformState:: {
-    provider: {
-      aws: {
-        version: '~> 3.1.0',
-        region: 'eu-central-1',
-      },
-    },
+  AWSTerraformState::  provider.AWSProvider {
+    local aws_tfstate = self,
+
+    tfstate_bucket:: error "Name of the Terraform state bucket is required",
+    tfstate_dynamodb_table:: error "Name of the DynamoDB table for Terraform state locking is required",
 
     resource: {
       aws_s3_bucket: {
         tfstate: {
-          bucket: 'kc-playground-aws-tfstate',
+          bucket: aws_tfstate.tfstate_bucket,
           acl: 'private',
 
           versioning: {
@@ -33,7 +33,7 @@
 
       aws_dynamodb_table: {
         tfstate_lock: {
-          name: 'kc-playground-aws-tfstate-lock',
+          name: aws_tfstate.tfstate_dynamodb_table,
 
           read_capacity: 1,
           write_capacity: 1,

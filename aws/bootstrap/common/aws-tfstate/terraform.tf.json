@@ -43,7 +43,7 @@
          "s3": {
             "bucket": "kc-playground-aws-tfstate",
             "dynamodb_table": "kc-playground-aws-tfstate-lock",
-            "key": "bootstrap/aws-tfstate/terraform.tfstate",
+            "key": "bootstrap/common/aws-tfstate/terraform.tfstate",
             "region": "eu-central-1"
          }
       }
