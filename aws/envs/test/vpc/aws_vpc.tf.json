@@ -1,0 +1,25 @@
+{
+   "provider": {
+      "aws": {
+         "region": "eu-central-1",
+         "version": "~> 3.1.0"
+      }
+   },
+   "resource": {
+      "aws_vpc": {
+         "main": {
+            "cidr_block": "10.1.0.0/16"
+         }
+      }
+   },
+   "terraform": {
+      "backend": {
+         "s3": {
+            "bucket": "kc-playground-aws-tfstate",
+            "dynamodb_table": "kc-playground-aws-tfstate-lock",
+            "key": "envs/test/vpc/terraform.tfstate",
+            "region": "eu-central-1"
+         }
+      }
+   }
+}
