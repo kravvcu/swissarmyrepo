@@ -5,7 +5,8 @@ local env = import "../env.jsonnet";
 
 {
   local vals = {
-    cidr_block:: "10.1.0.0/16"
+    cidr_block:: "10.1.0.0/16",
+#    enable_dns_hostnames:: true,
   },
 
   'aws_vpc.tf.json': terraform.TerraformS3Backend + vpc.AWSVpc + common + env + vals

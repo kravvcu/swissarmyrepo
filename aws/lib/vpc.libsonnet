@@ -9,7 +9,11 @@ local provider = import "provider.libsonnet";
     resource: {
       aws_vpc: {
         main: {
-          cidr_block: aws_vpc.cidr_block
+          cidr_block: aws_vpc.cidr_block,
+
+          tags: {
+            Name: "custom-main",
+          }
         }
       }
     }
