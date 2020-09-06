@@ -1,5 +1,9 @@
+local terraform = import "terraform.libsonnet";
+
 {
-  tfstate_bucket:: 'kc-playground-aws-tfstate',
-  tfstate_bucket_region:: 'eu-central-1',
-  tfstate_dynamodb_table:: 'kc-playground-aws-tfstate-lock',
+  TerraformS3Backend: terraform.TerraformS3Backend {
+    bucket_name:: 'kc-playground-aws-tfstate',
+    region:: 'eu-central-1',
+    dynamodb_table:: 'kc-playground-aws-tfstate-lock',
+  }
 }

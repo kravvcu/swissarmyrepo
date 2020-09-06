@@ -8,7 +8,7 @@ local env = import "../env.jsonnet";
   vpc_name:: "my-custom-vpc",
 
   'terraform.tf.json': env.EnvTerraformBackend {
-    s3_tfstate_suffix: "/vpc"
+    tfstate_suffix: "/vpc"
   },
 
   'providers.tf.json': {
