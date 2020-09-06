@@ -66,3 +66,6 @@ sudo pip install psutil
 # install groff, glibc and less
 
 # add AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to .zprofile
+
+# install `markdown-preview-mode` in emacs
+# install `markdown` for the emacs markdown preview mode
