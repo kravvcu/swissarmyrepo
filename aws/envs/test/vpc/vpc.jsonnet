@@ -1,14 +1,30 @@
-local terraform = import "terraform.libsonnet";
+local aws_provider = import "aws_provider.libsonnet";
+
 local vpc = import "vpc.libsonnet";
-local common = import "../../../common.jsonnet";
 local env = import "../env.jsonnet";
 
 {
-  local vals = {
-    cidr_block:: "10.1.0.0/16",
-#    enable_dns_hostnames:: true,
+  cidr_block:: "10.1.0.0/16",
+  vpc_name:: "my-custom-vpc",
+
+  'terraform.tf.json': env.EnvTerraformBackend {
+    s3_tfstate_suffix: "/vpc"
   },
 
-  'aws_vpc.tf.json': terraform.TerraformS3Backend + vpc.AWSVpc + common + env + vals
-    { s3_tfstate_prefix: "envs/" + env.environment + "/vpc" }
+  'providers.tf.json': {
+    provider: aws_provider.AWSProvider {
+      region: env.region
+    }
+   },
+
+  'aws_vpc.tf.json': {
+    resource: {
+      aws_vpc: {
+        main: vpc.AWSVpc {
+          name: $.vpc_name,
+          cidr_block: $.cidr_block
+        }
+      }
+    }
+  }
 }

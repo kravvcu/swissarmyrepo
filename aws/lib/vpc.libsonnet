@@ -1,21 +1,12 @@
-local provider = import "provider.libsonnet";
-
 {
-  AWSVpc:: provider.AWSProvider {
+  AWSVpc:: {
     local aws_vpc = self,
 
-    cidr_block:: error "CIDR block for the AWS VPC is required",
+    name:: error "Name for the AWS VPC is required",
+    cidr_block: error "CIDR block for the AWS VPC is required",
 
-    resource: {
-      aws_vpc: {
-        main: {
-          cidr_block: aws_vpc.cidr_block,
-
-          tags: {
-            Name: "custom-main",
-          }
-        }
-      }
+    tags: {
+      Name: aws_vpc.name,
     }
   }
 }
