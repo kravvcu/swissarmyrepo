@@ -1,0 +1,83 @@
+{
+   "data": {
+      "aws_ami": {
+         "ami": {
+            "filter": [
+               {
+                  "name": "name",
+                  "values": [
+                     "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
+                  ]
+               },
+               {
+                  "name": "virtualization-type",
+                  "values": [
+                     "hvm"
+                  ]
+               }
+            ],
+            "most_recent": true,
+            "owners": [
+               "099720109477"
+            ]
+         }
+      }
+   },
+   "resource": {
+      "aws_instance": {
+         "ubuntu": {
+            "ami": "${data.aws_ami.ami.id}",
+            "instance_type": "t2.micro",
+            "key_name": "${aws_key_pair.kp.key_name}",
+            "tags": {
+               "Name": "vm-in-default-vpc"
+            },
+            "vpc_security_group_ids": [
+               "${aws_security_group.permit_ssh.id}"
+            ]
+         }
+      },
+      "aws_key_pair": {
+         "kp": {
+            "key_name_prefix": "vm-in-default-vpc-",
+            "public_key": "${file(\"~/.ssh/id_rsa.pub\")}"
+         }
+      },
+      "aws_security_group": {
+         "permit_ssh": {
+            "egress": [
+               {
+                  "cidr_blocks": [
+                     "0.0.0.0/0"
+                  ],
+                  "description": "Permit all outbound traffic",
+                  "from_port": "0",
+                  "ipv6_cidr_blocks": [ ],
+                  "prefix_list_ids": [ ],
+                  "protocol": "-1",
+                  "security_groups": [ ],
+                  "self": false,
+                  "to_port": "0"
+               }
+            ],
+            "ingress": [
+               {
+                  "cidr_blocks": [
+                     "Replace with own IP in CIDR format to permit SSH"
+                  ],
+                  "description": "Permit inbound SSH traffic",
+                  "from_port": "22",
+                  "ipv6_cidr_blocks": [ ],
+                  "prefix_list_ids": [ ],
+                  "protocol": "tcp",
+                  "security_groups": [ ],
+                  "self": false,
+                  "to_port": "22"
+               }
+            ],
+            "name_prefix": "vm-in-default-vpc-",
+            "vpc_id": "vpc-baa0e8d2"
+         }
+      }
+   }
+}

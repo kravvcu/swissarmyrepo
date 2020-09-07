@@ -1,0 +1,12 @@
+{
+   "terraform": {
+      "backend": {
+         "s3": {
+            "bucket": "kc-playground-aws-tfstate",
+            "dynamodb_table": "kc-playground-aws-tfstate-lock",
+            "key": "envs/vm-default-vpc/ec2-ssh/terraform.tfstate",
+            "region": "eu-central-1"
+         }
+      }
+   }
+}

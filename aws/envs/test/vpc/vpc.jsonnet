@@ -15,7 +15,7 @@ local env = import "../env.jsonnet";
     provider: aws_provider.AWSProvider {
       region: env.region
     }
-   },
+  },
 
   'aws_vpc.tf.json': {
     resource: {
