@@ -25,10 +25,11 @@ mechanisms:
   # fetch the IP of your instance (assuming you only have one) and run SSH
   # note that the user might differ depending on the OS
 
-  INSTANCE\_IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].{Name:PublicIpAddress}' --output text)
+  INSTANCE
+  _IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].{Name:PublicIpAddress}' --output text)
   ssh ubuntu@${INSTANCE_IP}
 
-  sudo apt update && sudo apt install vim
+  sudo apt update && sudo apt install -y vim
   ping www.google.com
   ```
 
