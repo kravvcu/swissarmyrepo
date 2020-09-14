@@ -26,21 +26,33 @@ mechanisms:
   # note that the user might differ depending on the OS
 
   INSTANCE
-  _IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].{Name:PublicIpAddress}' --output text)
-  ssh ubuntu@${INSTANCE_IP}
+  $ _IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].{Name:PublicIpAddress}' --output text)
+  $ ssh ubuntu@${INSTANCE_IP}
 
-  sudo apt update && sudo apt install -y vim
-  ping www.google.com
+  $ sudo apt update && sudo apt install -y vim
+  $ ping www.google.com
   ```
 
   </p>
 </details>
 
-
 ## Exercises - Instance Connect
 
 1. Connect to the VM using the browser.
-1. Connect to the VM using SSH with Instance Connect.
+
+    <details>
+      <summary>Show solution</summary>
+      <p>
+
+      1. Log into the AWS console.
+      1. Navigate to `EC2 -> Instances`.
+      1. Select the VM and push the `Connect` button.
+      1. Select `EC2 Instance Connect (browser-based SSH session)` and push the `Connect` button.
+
+      </p>
+    </details>
+
+2. Connect to the VM using SSH with Instance Connect.
 
 ## Notable mentions
 

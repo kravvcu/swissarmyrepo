@@ -18,4 +18,4 @@ That's it. You can start using AWS through Terraform now.
 This part of the repository contains Jsonnet code to setup AWS infrastructure for different lab
 scenarios for learning purposes.
 
-- [VM in default VPC](./envs/vm-default-vpc/README.md)
+- [VM in default VPC](./envs/vm-in-default-vpc/README.md)
