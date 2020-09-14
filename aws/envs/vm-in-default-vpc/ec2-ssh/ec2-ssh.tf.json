@@ -39,7 +39,7 @@
       },
       "aws_key_pair": {
          "kp": {
-            "key_name_prefix": "vm-in-default-vpc-",
+            "key_name_prefix": "vm-in-default-vpc-ssh",
             "public_key": "${file(\"~/.ssh/id_rsa.pub\")}"
          }
       },
@@ -75,7 +75,7 @@
                   "to_port": "22"
                }
             ],
-            "name_prefix": "vm-in-default-vpc-",
+            "name_prefix": "vm-in-default-vpc-ssh",
             "vpc_id": "vpc-baa0e8d2"
          }
       }

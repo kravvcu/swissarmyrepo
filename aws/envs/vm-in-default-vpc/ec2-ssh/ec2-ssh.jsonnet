@@ -4,8 +4,8 @@ local env = import "../env.jsonnet";
 local instance = import "ec2_instance.libsonnet";
 
 {
-  resource_name_prefix:: 'vm-in-default-vpc-',
   cidr_blocks:: 'Replace with own IP in CIDR format to permit SSH',
+  resource_name_prefix:: 'vm-in-default-vpc-ssh',
 
   'terraform.tf.json': env.EnvTerraformBackend {
     tfstate_suffix: "/ec2-ssh"
