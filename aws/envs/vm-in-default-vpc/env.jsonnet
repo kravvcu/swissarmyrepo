@@ -3,6 +3,7 @@ local common = import "../../common.jsonnet";
 {
   environment:: "vm-default-vpc",
   region:: "eu-west-2",
+  vpc_id:: 'vpc-baa0e8d2',
 
   EnvTerraformBackend:: common.TerraformS3Backend {
     local backend = self,

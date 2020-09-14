@@ -4,7 +4,6 @@ local env = import "../env.jsonnet";
 local instance = import "ec2_instance.libsonnet";
 
 {
-  vpc_id:: 'vpc-baa0e8d2',
   resource_name_prefix:: 'vm-in-default-vpc-',
   cidr_blocks:: 'Replace with own IP in CIDR format to permit SSH',
 
@@ -33,7 +32,7 @@ local instance = import "ec2_instance.libsonnet";
       aws_security_group: {
         permit_ssh: {
           name_prefix: $.resource_name_prefix,
-          vpc_id: $.vpc_id,
+          vpc_id: env.vpc_id,
 
           ingress: [{
             description: "Permit inbound SSH traffic",
